@@ -1,7 +1,9 @@
-﻿using Unity.VisualScripting.Dependencies.Sqlite;
+﻿using System;
+using Unity.VisualScripting.Dependencies.Sqlite;
 
 namespace Data
 {
+    [Serializable]
     public class Shrimp
     {
         [PrimaryKey, AutoIncrement]

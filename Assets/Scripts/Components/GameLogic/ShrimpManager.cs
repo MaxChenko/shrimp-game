@@ -1,11 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Data;
 using UnityEngine;
 
 public class ShrimpManager : MonoBehaviour
 {
-    private List<Shrimp> shrimps;
-    private GameObject shrimpPrefab;
+    private List<Shrimp> shrimps = new List<Shrimp>();
+    public GameObject shrimpPrefab;
+
+    private void Awake()
+    {
+        shrimps = new List<Shrimp>();
+    }
 
 
     public void SpawnShrimps(List<Shrimp> shrimps)
@@ -19,12 +25,7 @@ public class ShrimpManager : MonoBehaviour
 
     public void SpawnShrimp(Shrimp shrimp)
     {
-        var sg =  Instantiate(shrimpPrefab);
-        this.shrimps.Add(shrimp);
-    }
-
-    public void SetShrimpPrefab(GameObject shrimp)
-    {
-        this.shrimpPrefab = shrimp;
+        var sg =  Instantiate(shrimpPrefab).GetComponent<ShrimpAttribute>().shrimpData = shrimp;
+        shrimps.Add(shrimp);
     }
 }

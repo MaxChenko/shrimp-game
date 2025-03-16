@@ -10,7 +10,7 @@ public class SQLiteManager : MonoBehaviour
     private string dbPath;
     private SQLiteConnection db;
 
-    void Start()
+    void Awake()
     {
         dbPath = Path.Combine(Application.persistentDataPath, "game_database.db");
         

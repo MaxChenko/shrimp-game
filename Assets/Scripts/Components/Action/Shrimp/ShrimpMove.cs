@@ -20,6 +20,8 @@ public class ShrimpMove : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if(!_rb) return;
+        
         Vector2 normal = collision.contacts[0].normal;
 
         if (Mathf.Abs(normal.x) > Mathf.Abs(normal.y))

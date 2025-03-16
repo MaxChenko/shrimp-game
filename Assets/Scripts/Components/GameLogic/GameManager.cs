@@ -4,30 +4,24 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public SQLiteManager sqliteManager;
-    
+    private SQLiteManager sqliteManager;
     private ShrimpManager shrimpManager;
     private TankManager tankManager;
 
     private void Awake()
     {
-        shrimpManager = (new GameObject("ShrimpManager")).AddComponent<ShrimpManager>();
-        shrimpManager.transform.SetParent(transform);
-        shrimpManager.SetShrimpPrefab(GameObject.Find("ShrimpPrefab"));
-        
-        tankManager = (new GameObject("TankManager")).AddComponent<TankManager>();
-        tankManager.transform.SetParent(transform);
-        
-        sqliteManager = (new GameObject("SQLiteManager")).AddComponent<SQLiteManager>();
-        sqliteManager.transform.SetParent(transform);
+        shrimpManager = (gameObject.transform.Find("ShrimpManager")).GetComponent<ShrimpManager>();
+        tankManager = (gameObject.transform.Find("TankManager")).GetComponent<TankManager>();
+        sqliteManager = (gameObject.transform.Find("SQLiteManager")).GetComponent<SQLiteManager>();
     }
 
     private void Start()
     {        
         shrimpManager.SpawnShrimps(sqliteManager.GetShrimp());
+        tankManager.SpawnTanks(sqliteManager.GetTanks());
     }
 
-    private void CreateShrimp()
+    public void CreateShrimp()
     {
         var shrimp = new Shrimp();
         shrimpManager.SpawnShrimp(shrimp);

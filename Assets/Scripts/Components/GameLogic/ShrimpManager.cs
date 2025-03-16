@@ -1,6 +1,6 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
-using Data;
+
 using UnityEngine;
 
 public class ShrimpManager : MonoBehaviour

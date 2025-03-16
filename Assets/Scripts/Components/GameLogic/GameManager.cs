@@ -1,5 +1,5 @@
 ﻿using System;
-using Data;
+
 using UnityEngine;
 
 public class GameManager : MonoBehaviour

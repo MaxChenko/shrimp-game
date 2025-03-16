@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Linq;
-using Data;
+
 using Unity.VisualScripting.Dependencies.Sqlite;
 
 public class SQLiteManager : MonoBehaviour

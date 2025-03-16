@@ -1,17 +1,15 @@
 ﻿using System;
 using Unity.VisualScripting.Dependencies.Sqlite;
 
-namespace Data
+
+[Serializable]
+public class Shrimp
 {
-    [Serializable]
-    public class Shrimp
-    {
-        [PrimaryKey, AutoIncrement]
-        public int ID { get; set; }
+    [PrimaryKey, AutoIncrement]
+    public int ID { get; set; }
+
+    public string Name { get; set; }
+
+    public bool CanGetPregnant { get; set; }
     
-        public string Name { get; set; }
-    
-        public bool CanGetPregnant { get; set; }
-        
-    }
 }

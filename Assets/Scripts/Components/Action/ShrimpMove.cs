@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Shrimp : MonoBehaviour
+public class ShrimpMove : MonoBehaviour
 {
  private Rigidbody2D _rb;
     public float speed = 2f;

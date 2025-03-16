@@ -5,11 +5,15 @@ using UnityEngine;
 
 public class TankManager : MonoBehaviour
 {
+    public static TankManager tankManager;
+    
     private List<Tank> tanks = new List<Tank>();
     public GameObject tankPrefab;
 
     private void Awake()
     {
+        tankManager = this;
+        
         tanks = new List<Tank>();
     }
 

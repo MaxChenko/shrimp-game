@@ -5,11 +5,15 @@ using UnityEngine;
 
 public class ShrimpManager : MonoBehaviour
 {
+    public static ShrimpManager shrimpManager;
+    
     private List<Shrimp> shrimps = new List<Shrimp>();
     public GameObject shrimpPrefab;
 
     private void Awake()
     {
+        shrimpManager = this;
+        
         shrimps = new List<Shrimp>();
     }
 

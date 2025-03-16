@@ -10,9 +10,17 @@ public class SQLiteManager : MonoBehaviour
     private string dbPath;
     private SQLiteConnection db;
 
+    [Header("DEBUG")] 
+    public bool resetDB;
+
     void Awake()
     {
         dbPath = Path.Combine(Application.persistentDataPath, "game_database.db");
+        
+        if (File.Exists(dbPath) && resetDB)
+        {
+            File.Delete(dbPath);
+        }
         
         db = new SQLiteConnection(dbPath);
         db.CreateTable<Shrimp>();

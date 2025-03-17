@@ -1,6 +1,7 @@
 ﻿using System;
 
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
     public void CreateShrimp()
     {
         var shrimp = new Shrimp();
+        shrimp.Name = Random.Range(1,100).ToString();
         shrimpManager.SpawnShrimp(shrimp);
         sqliteManager.InsertShrimp(shrimp);
     }

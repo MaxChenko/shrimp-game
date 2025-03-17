@@ -10,6 +10,8 @@ public class ShrimpManager : MonoBehaviour
     private List<Shrimp> shrimps = new List<Shrimp>();
     public GameObject shrimpPrefab;
 
+    private Shrimp selectedShrimp;
+    
     private void Awake()
     {
         shrimpManager = this;
@@ -31,5 +33,16 @@ public class ShrimpManager : MonoBehaviour
     {
         var sg =  Instantiate(shrimpPrefab).GetComponent<ShrimpAttribute>().shrimpData = shrimp;
         shrimps.Add(shrimp);
+    }
+    
+    public void SelectShrimp(Shrimp shrimp)
+    {
+        selectedShrimp = shrimp;
+        Debug.Log("Selected shrimp: " + shrimp.Name);
+    }
+    
+    public Shrimp GetSelectedShrimp()
+    {
+        return selectedShrimp;
     }
 }

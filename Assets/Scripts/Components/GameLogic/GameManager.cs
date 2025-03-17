@@ -1,6 +1,7 @@
 ﻿using System;
 
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour
     {
         var shrimp = new Shrimp();
         shrimp.TankID = tankManager.SelectedTank.ID;
+        shrimp.Name = Random.Range(1,100).ToString();
         shrimpManager.SpawnShrimp(shrimp);
         sqliteManager.InsertShrimp(shrimp);
     }
@@ -48,6 +50,11 @@ public class GameManager : MonoBehaviour
     {
         tankManager.SpawnTank(tank,slot);
         sqliteManager.InsertTank(tank);
+    }
+
+    public void SelectShrimp(Shrimp shrimp)
+    {
+        shrimpManager.SelectShrimp(shrimp);
     }
 
     public void SelectTank(Vector3 position, Tank tank)

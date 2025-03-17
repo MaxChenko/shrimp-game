@@ -1,60 +1,42 @@
 ﻿public enum Grade
 {
-    SSS,
-    SS,
-    S,
-    A,
-    B,
-    C
+    SSS = 1,
+    SS = 2,
+    S = 3,
+    A = 4,
+    B = 5,
+    C = 6,
+    D = 7,
+    F = 8
 }
 
 public enum Maturity
 {
-    Larva,
-    Juvenile,
-    Adult
+    Larva = 1,
+    Juvenile = 2,
+    Adult = 3
 }
 
 public enum ActivityLevel
 {
-    Low,
-    Medium,
-    High
+    Low = 1,
+    Medium = 2,
+    High = 3
 }
 
 public enum Rarity
 {
-    Common,
-    Uncommon,
-    Rare,
-    Epic,
-    Legendary
+    Common = 1,
+    Uncommon = 2,
+    Rare = 3,
+    Epic = 4,
+    Legendary = 5
 }
 
 public enum Size
 {
-    Tiny,
-    Small,
-    Medium,
-    Large
-}
-
-public class Species
-{
-    decimal BaseValue { get; }
-    Rarity Rarity { get; }
-    Size Size { get; }
-    float Transparency { get; }
-    bool Bioluminescence { get; }
-    float Fertility { get; }
-    int GestationTime { get; }
-    int EggCount { get; }
-    ActivityLevel ActivityLevel { get; }
-    float MinTemperatureTolerance { get; }
-    float MaxTemperatureTolerance { get; }
-    float MinPHTolerance { get; }
-    float MaxPHTolerance { get; }
-    
-    // WaterType WaterType { get; }
-    // Food[] Diet { get; }
+    Tiny = 1,
+    Small = 2,
+    Medium = 3,
+    Large = 4
 }

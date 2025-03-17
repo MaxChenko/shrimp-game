@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -4517676101063748061}
   - component: {fileID: 2883104562696449312}
   - component: {fileID: -7726030346497390636}
+  - component: {fileID: 3006639432646278752}
   m_Layer: 6
   m_Name: ShrimpPrefab
   m_TagString: shrimp
@@ -212,3 +213,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28c1f974dcc14de2b048f6696234120a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3006639432646278752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698939011218724960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6011651405cc226498ceaba8b77acf81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HighlightMaterial: {fileID: 2100000, guid: 30b94edea04773643b861186a5d422b9, type: 2}

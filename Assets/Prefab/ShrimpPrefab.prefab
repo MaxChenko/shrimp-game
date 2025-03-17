@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: -4517676101063748061}
   - component: {fileID: 2883104562696449312}
   - component: {fileID: -7726030346497390636}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShrimpPrefab
-  m_TagString: Untagged
+  m_TagString: shrimp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

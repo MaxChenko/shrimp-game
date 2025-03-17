@@ -1,6 +1,8 @@
-﻿using Unity.VisualScripting.Dependencies.Sqlite;
+﻿using System;
+using Unity.VisualScripting.Dependencies.Sqlite;
+using UnityEngine;
 
-
+[Serializable]
 public class Tank
 {
     [PrimaryKey, AutoIncrement]
@@ -11,4 +13,6 @@ public class Tank
     public int Capacity { get; set;  }
     
     public int ActualCapacity { get; set; }
+    
+    public String Slot { get; set; }
 }

@@ -22,14 +22,18 @@ public class ShrimpManager : MonoBehaviour
     {
         foreach (var shrimp in shrimps)
         {
-            var sg =  Instantiate(shrimpPrefab);
+            var sg = Instantiate(shrimpPrefab).GetComponent<ShrimpAttribute>();
+            sg.shrimpData = shrimp;
+            sg.transform.position = TankManager.tankManager.GetTankPosition(shrimp.TankID);
             this.shrimps.Add(shrimp);
         }
     }
 
     public void SpawnShrimp(Shrimp shrimp)
     {
-        var sg =  Instantiate(shrimpPrefab).GetComponent<ShrimpAttribute>().shrimpData = shrimp;
+        var sg = Instantiate(shrimpPrefab).GetComponent<ShrimpAttribute>();
+        sg.shrimpData = shrimp;
+        sg.transform.position = TankManager.tankManager.GetTankPosition();
         shrimps.Add(shrimp);
     }
 }

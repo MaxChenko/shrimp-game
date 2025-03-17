@@ -44,6 +44,8 @@ public class SQLiteManager : MonoBehaviour
     
     public List<Tank> GetTanks()
     {
-        return db.Table<Tank>().ToList();
+        var tanks = db.Table<Tank>().ToList();
+        
+        return tanks;
     }
 }

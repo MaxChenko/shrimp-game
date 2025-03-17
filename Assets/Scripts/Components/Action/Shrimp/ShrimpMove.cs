@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShrimpMove : MonoBehaviour
@@ -11,19 +12,23 @@ public class ShrimpMove : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
 
         direction = new Vector2(
-            Random.Range(0, 2) == 0 ? 1 : -1, 
-            Random.Range(0, 2) == 0 ? 1 : -1
-        );
+            Random.Range(-2.0f, 2.0f),
+            Random.Range(-2.0f, 2.0f)
+        ).normalized;
 
         _rb.linearVelocity = direction * speed;
+        Debug.Log(_rb.linearVelocity);
     }
-
+    
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(!_rb) return;
-        
-        Vector2 normal = collision.contacts[0].normal;
+        if (_rb == null) return;
 
+        Debug.Log("WYTF");
+        
+        var normal = collision.contacts[0].normal;
+        
         if (Mathf.Abs(normal.x) > Mathf.Abs(normal.y))
         {
             direction.x *= -1;
@@ -32,7 +37,7 @@ public class ShrimpMove : MonoBehaviour
         {
             direction.y *= -1;
         }
-
-        _rb.linearVelocity = direction * speed;
+        _rb.linearVelocity = direction.normalized * speed;
+        Debug.Log(_rb.linearVelocity);
     }
 }

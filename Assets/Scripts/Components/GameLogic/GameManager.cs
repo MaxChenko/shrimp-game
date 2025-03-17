@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     private SQLiteManager sqliteManager;
     private ShrimpManager shrimpManager;
     private TankManager tankManager;
+    private ViewManager viewManager;
 
     private void Awake()
     {
@@ -16,19 +17,47 @@ public class GameManager : MonoBehaviour
         
         shrimpManager = (gameObject.transform.Find("ShrimpManager")).GetComponent<ShrimpManager>();
         tankManager = (gameObject.transform.Find("TankManager")).GetComponent<TankManager>();
+        viewManager = (gameObject.transform.Find("ViewManager")).GetComponent<ViewManager>();
         sqliteManager = (gameObject.transform.Find("SQLiteManager")).GetComponent<SQLiteManager>();
     }
 
     private void Start()
-    {        
-        shrimpManager.SpawnShrimps(sqliteManager.GetShrimp());
+    {       
         tankManager.SpawnTanks(sqliteManager.GetTanks());
+        
+        shrimpManager.SpawnShrimps(sqliteManager.GetShrimp());
     }
 
     public void CreateShrimp()
     {
         var shrimp = new Shrimp();
+        shrimp.TankID = tankManager.SelectedTank.ID;
         shrimpManager.SpawnShrimp(shrimp);
         sqliteManager.InsertShrimp(shrimp);
+    }
+    
+    public void CreateTank(Transform slot)
+    {
+        var tank = new Tank();
+        tank.Slot = slot.name;
+        tankManager.SpawnTank(tank,slot);
+        sqliteManager.InsertTank(tank);
+    }
+
+    public void SpawnTank(Transform slot, Tank tank)
+    {
+        tankManager.SpawnTank(tank,slot);
+        sqliteManager.InsertTank(tank);
+    }
+
+    public void SelectTank(Vector3 position, Tank tank)
+    {
+        tankManager.SelectedTank = tank;
+        viewManager.SetSingleTankView(position);
+    }
+
+    public void DeselectTank()
+    {
+        viewManager.SetAllTanksView();
     }
 }

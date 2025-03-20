@@ -13,6 +13,6 @@ public class TankSelect : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        GameManager.gameManager.SelectTank(transform.position,tankAttribute.tankData);
+        GameManager.SelectTank(transform.position,tankAttribute.tankData);
     }
 }

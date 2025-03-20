@@ -48,4 +48,9 @@ public class SQLiteManager : MonoBehaviour
         
         return tanks;
     }
+    
+    public void UpdateShrimp(Shrimp shrimp)
+    {
+        db.Update(shrimp);
+    }
 }

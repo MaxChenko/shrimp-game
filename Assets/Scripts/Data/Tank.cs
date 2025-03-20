@@ -5,6 +5,9 @@ using UnityEngine;
 [Serializable]
 public class Tank
 {
+    [Ignore]
+    public GameObject GameObject { get; set; }
+    
     [PrimaryKey, AutoIncrement]
     public int ID { get; set; }
 

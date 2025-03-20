@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager gameManager;
+    private static GameManager gameManager;
     
     private SQLiteManager sqliteManager;
     private ShrimpManager shrimpManager;
@@ -38,33 +38,45 @@ public class GameManager : MonoBehaviour
         sqliteManager.InsertShrimp(shrimp);
     }
     
-    public void CreateTank(Transform slot)
+    public static void CreateTank(Transform slot)
     {
         var tank = new Tank();
         tank.Slot = slot.name;
-        tankManager.SpawnTank(tank,slot);
-        sqliteManager.InsertTank(tank);
+        gameManager.tankManager.SpawnTank(tank,slot);
+        gameManager.sqliteManager.InsertTank(tank);
     }
 
-    public void SpawnTank(Transform slot, Tank tank)
+    public static void SpawnTank(Transform slot, Tank tank)
     {
-        tankManager.SpawnTank(tank,slot);
-        sqliteManager.InsertTank(tank);
+        gameManager.tankManager.SpawnTank(tank,slot);
+        gameManager.sqliteManager.InsertTank(tank);
     }
 
-    public void SelectShrimp(Shrimp shrimp)
+    public static void SelectShrimp(Shrimp shrimp)
     {
-        shrimpManager.SelectShrimp(shrimp);
+        gameManager.shrimpManager.SelectShrimp(shrimp);
     }
 
-    public void SelectTank(Vector3 position, Tank tank)
+    public static void SelectTank(Vector3 position, Tank tank)
     {
-        tankManager.SelectedTank = tank;
-        viewManager.SetSingleTankView(position);
+        gameManager.tankManager.SelectedTank = tank;
+        gameManager.viewManager.SetSingleTankView(position);
     }
 
     public void DeselectTank()
     {
         viewManager.SetAllTanksView();
+    }
+
+    public static void MoveShrimpToTank(Tank tank)
+    {
+        ShrimpManager.GetSelectedShrimp().ForEach(shrimp =>
+        {
+            shrimp.TankID = tank.ID;
+            shrimp.GameObject.GetComponent<ShrimpSelect>().Unselect();
+            shrimp.GameObject.transform.position = tank.GameObject.transform.position;
+            gameManager.sqliteManager.UpdateShrimp(shrimp);
+        });
+        ShrimpManager.ClearSelected();
     }
 }

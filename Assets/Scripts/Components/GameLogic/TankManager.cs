@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 public class TankManager : MonoBehaviour
 {
     private List<TankSlot> tankSlots = new List<TankSlot>();
-    public static TankManager tankManager;
+    private static TankManager tankManager;
     
-    private List<TankAttribute> tanks = new List<TankAttribute>();
+    private List<Tank> tanks = new List<Tank>();
     public GameObject tankPrefab;
+
+    public UnityEvent <Tank> TankCreateEvent;
     
     public Tank SelectedTank { get; set; } 
 
@@ -52,29 +55,19 @@ public class TankManager : MonoBehaviour
         var transform1 = tankG.transform;
         transform1.parent = parent;
         transform1.localPosition = Vector3.zero;
-        tanks.Add(tankG);
+        tank.GameObject = tankG.gameObject;
+        tanks.Add(tank);
+        TankCreateEvent.Invoke(tank);
     }
 
-    public Vector3 GetTankPosition()
+    public static Tank GetTank(int ID)
     {
-        foreach (var tankSlot in tankSlots.Where(tankSlot => tankSlot.transform.parent.name.Equals(SelectedTank.Slot)))
-        {
-            return tankSlot.transform.position;
-        }
-        return Vector3.zero;
+        return tankManager.tanks.Find(tank => tank.ID == ID);
     }
-    
-    public Vector3 GetTankPosition(int TankID)
-    {
-        foreach (var tank in tanks)
-        {
-            //Debug.Log(tank.tankData.ID + " == " + TankID);
-            if (tank.tankData.ID == TankID)
-            {
-                return tank.transform.position;
-            }
-        }
 
-        return Vector3.zero;
+    public static List<Tank> GetAllTanks()
+    {
+        Debug.Log("WHAT IS GOING ON HERE? " + tankManager.tanks.Count);
+        return tankManager.tanks;
     }
 }

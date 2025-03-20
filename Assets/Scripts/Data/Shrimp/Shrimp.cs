@@ -1,10 +1,16 @@
 ﻿using System;
 using Unity.VisualScripting.Dependencies.Sqlite;
+using UnityEngine;
 
 
 [Serializable]
 public class Shrimp
 {
+    // GameObject 
+    [Ignore]
+    public GameObject GameObject { get; set; }
+
+    // Actual DB Data
     [PrimaryKey, AutoIncrement]
     public int ID { get; set; }
 
@@ -36,6 +42,13 @@ public class Shrimp
     
     public float PHTolerance { get; set; }
     
+    // ENUM References
+    public int GradeInt { get; set; }
+    public int MaturityInt { get; set; }
+    public int ActivityLevelInt { get; set; }
+    public int RarityInt { get; set; }
+    public int SizeInt { get; set; }
+    
     
     // ENUMS
     [Ignore]
@@ -48,14 +61,6 @@ public class Shrimp
     public Rarity Rarity { get; set; }
     [Ignore]
     public Size Size { get; set; }
-    
-    
-    // ENUM References
-    public int GradeInt { get; set; }
-    public int MaturityInt { get; set; }
-    public int ActivityLevelInt { get; set; }
-    public int RarityInt { get; set; }
-    public int SizeInt { get; set; }
     
 
     public void ReconcileEnums()

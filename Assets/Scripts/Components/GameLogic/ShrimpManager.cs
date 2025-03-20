@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ShrimpManager : MonoBehaviour
 {
-    public static ShrimpManager shrimpManager;
+    private static ShrimpManager shrimpManager;
     
     private List<Shrimp> shrimps = new List<Shrimp>();
     public GameObject shrimpPrefab;
 
-    private Shrimp selectedShrimp;
+    private List<Shrimp> selectedShrimp = new List<Shrimp>();
+
+    public UnityEvent shrimpSelectedEvent;
     
     private void Awake()
     {
@@ -24,10 +27,7 @@ public class ShrimpManager : MonoBehaviour
     {
         foreach (var shrimp in shrimps)
         {
-            var sg = Instantiate(shrimpPrefab).GetComponent<ShrimpAttribute>();
-            sg.shrimpData = shrimp;
-            sg.transform.position = TankManager.tankManager.GetTankPosition(shrimp.TankID);
-            this.shrimps.Add(shrimp);
+            SpawnShrimp(shrimp);
         }
     }
 
@@ -35,18 +35,32 @@ public class ShrimpManager : MonoBehaviour
     {
         var sg = Instantiate(shrimpPrefab).GetComponent<ShrimpAttribute>();
         sg.shrimpData = shrimp;
-        sg.transform.position = TankManager.tankManager.GetTankPosition();
+        sg.transform.position = TankManager.GetTank(shrimp.TankID).GameObject.transform.position;
+        shrimp.GameObject = sg.gameObject;
         shrimps.Add(shrimp);
     }
     
     public void SelectShrimp(Shrimp shrimp)
     {
-        selectedShrimp = shrimp;
-        Debug.Log("Selected shrimp: " + shrimp.Name);
+        Debug.Log("SElected SHRIMP " + shrimp.ID);
+        if (selectedShrimp.Find((s) => shrimp.ID == s.ID) == null)
+        {
+            selectedShrimp.Add(shrimp);
+        }
+        else
+        {
+            selectedShrimp.RemoveAt(selectedShrimp.FindIndex((s) => shrimp.ID == s.ID));
+        }
+        shrimpSelectedEvent.Invoke();
     }
     
-    public Shrimp GetSelectedShrimp()
+    public static List<Shrimp> GetSelectedShrimp()
     {
-        return selectedShrimp;
+        return shrimpManager.selectedShrimp;
+    }
+
+    public static void ClearSelected()
+    {
+        shrimpManager.selectedShrimp.Clear();
     }
 }

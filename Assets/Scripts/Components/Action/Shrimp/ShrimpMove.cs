@@ -17,15 +17,12 @@ public class ShrimpMove : MonoBehaviour
         ).normalized;
 
         _rb.linearVelocity = direction * speed;
-        Debug.Log(_rb.linearVelocity);
     }
     
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (_rb == null) return;
-
-        Debug.Log("WYTF");
         
         var normal = collision.contacts[0].normal;
         
@@ -38,6 +35,5 @@ public class ShrimpMove : MonoBehaviour
             direction.y *= -1;
         }
         _rb.linearVelocity = direction.normalized * speed;
-        Debug.Log(_rb.linearVelocity);
     }
 }
